@@ -4,7 +4,7 @@
   "version": "1.0",
   "items": [{
       "page": "index.html",
-      "path": "jacEvMonitor",
+      "url": "jacEvMonitor",
       "menuName": {
           "en": "JAC EV Monitor"
       },
