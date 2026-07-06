@@ -1,0 +1,16 @@
+{
+  "name": "jac-ev-monitor",
+  "version": "1.0.0",
+  "description": "JAC EV Monitor Add-In for MyGeotab",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=5500",
+    "dev": "live-server --port=5500"
+  },
+  "author": "Heppy",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "JAC EV Monitor",
+  "supportEmail": "heppy@opexcg.com",
+  "version": "1.0",
+  "items": [{
+      "page": "index.html",
+      "path": "jacEvMonitor",
+      "menuName": {
+          "en": "JAC EV Monitor"
+      },
+      "icon": "images/icon.svg"
+  }]
+}

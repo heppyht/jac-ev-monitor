@@ -1,0 +1,410 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Segoe UI, Arial, sans-serif;
+}
+
+body {
+
+    background: #edf2f7;
+}
+
+.container {
+
+    width: 95%;
+
+    margin: 30px auto;
+}
+
+h1 {
+
+    color: #edf2f7;
+}
+
+body {
+
+    background: #edf2f7;
+}
+
+.container {
+
+    width: 95%;
+
+    margin: auto;
+
+    padding: 20px;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+@media(max-width:900px) {
+
+    .header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .header-right {
+
+        margin-top: 15px;
+
+    }
+
+}
+
+.header {
+
+    background: #245f97;
+
+    color: white;
+
+    border-radius: 8px;
+
+    padding: 25px 30px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.header-right {
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+}
+
+.header-left {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+.logo {
+
+    font-size: 40px;
+
+    margin-right: 18px;
+
+    color: #ff9900;
+
+}
+
+.header-title h1 {
+
+    margin: 0;
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+}
+
+.header-title p {
+
+    margin-top: 5px;
+
+    font-size: 18px;
+
+    color: #dfe8f4;
+
+}
+
+.header h1 {
+
+    margin-bottom: 5px;
+}
+
+.toolbar {
+
+    margin-top: 20px;
+
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+button {
+
+    padding: 10px 18px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+#btnRefresh {
+
+    background: #1f5d99;
+
+    color: white;
+}
+
+#btnExport {
+
+    background: #228B22;
+
+    color: white;
+
+    margin-left: 10px;
+}
+
+select {
+
+    padding: 8px;
+
+    margin-left: 10px;
+}
+
+.kpi-container {
+
+    margin-top: 20px;
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 20px;
+}
+
+.card {
+
+    background: white;
+
+    border-radius: 8px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .15);
+
+}
+
+.card h4 {
+
+    color: #555;
+
+    margin-bottom: 10px;
+
+}
+
+.card h2 {
+
+    color: #1f5d99;
+
+    font-size: 32px;
+
+}
+
+.table-container {
+
+    margin-top: 25px;
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    overflow-x: auto;
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+thead {
+
+    background: #1f5d99;
+
+    color: white;
+
+}
+
+th {
+
+    padding: 12px;
+
+}
+
+td {
+
+    padding: 10px;
+
+    border-bottom: 1px solid #ddd;
+
+    text-align: center;
+
+}
+
+tbody tr:hover {
+
+    background: #f3f7fb;
+
+}
+
+/* =====================================
+   TOOLBAR
+===================================== */
+
+.toolbar {
+
+    margin-top: 20px;
+
+    background: white;
+
+    border-radius: 8px;
+
+    padding: 18px 22px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.filter-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.filter-group label {
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #1f5d99;
+
+    margin-bottom: 8px;
+
+    text-transform: uppercase;
+
+}
+
+#timeRange {
+
+    width: 180px;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    background: white;
+
+}
+
+.toolbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+#btnRefresh {
+
+    background: #245f97;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    padding: 12px 22px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: .2s;
+
+}
+
+#btnRefresh:hover {
+
+    background: #1d4f7d;
+
+}
+
+#btnExport {
+
+    background: #1e8e3e;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    padding: 12px 22px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: .2s;
+
+}
+
+#btnExport:hover {
+
+    background: #157233;
+
+}
+
+@media(max-width:900px) {
+
+    .toolbar {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .toolbar-right {
+
+        margin-top: 20px;
+
+    }
+
+}
