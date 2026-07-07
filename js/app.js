@@ -5,38 +5,53 @@
 
 "use strict";
 
+// ===============================================
+// Initial Page
+// ===============================================
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    console.log("HTML Loaded");
+    console.log("JAC EV Monitor HTML Loaded");
 
-    // Database
-    document.getElementById("databaseName").textContent = "summobility";
+    // Database Name
+    const db = document.getElementById("databaseName");
+    if (db) {
+        db.textContent = "summobility";
+    }
 
     updateTime();
 
+    // Refresh
     document
         .getElementById("btnRefresh")
-        .addEventListener("click", loadDashboard);
+        ?.addEventListener("click", loadDashboard);
 
+    // Export
     document
         .getElementById("btnExport")
-        .addEventListener("click", exportCSV);
+        ?.addEventListener("click", exportCSV);
 
+    // Time Range
     document
         .getElementById("timeRange")
-        .addEventListener("change", loadDashboard);
+        ?.addEventListener("change", loadDashboard);
 
 });
 
 
 // ===============================================
-// Update Time
+// Update Last Refresh Time
 // ===============================================
 
 function updateTime() {
 
-    document.getElementById("lastUpdate").textContent =
-        new Date().toLocaleString();
+    const el = document.getElementById("lastUpdate");
+
+    if (el) {
+
+        el.textContent = new Date().toLocaleString("id-ID");
+
+    }
 
 }
 
@@ -47,18 +62,23 @@ function updateTime() {
 
 async function loadDashboard() {
 
-    console.log("--------------------------------");
-    console.log("Loading Dashboard");
-    console.log("--------------------------------");
+    console.log("================================");
+    console.log("Loading Dashboard...");
+    console.log("================================");
 
     try {
 
-        await loadDevices();
+        // fungsi ini berada di api/api.js
+        const devices = await loadDevices();
+
+        renderVehicleTable(devices);
 
         updateTime();
 
     }
     catch (err) {
+
+        console.error("Dashboard Error");
 
         console.error(err);
 
@@ -68,57 +88,7 @@ async function loadDashboard() {
 
 
 // ===============================================
-// Device
-// ===============================================
-
-async function loadDevices() {
-
-    const api = getApi();
-
-    return new Promise((resolve, reject) => {
-
-        api.call(
-
-            "Get",
-
-            {
-
-                typeName: "Device"
-
-            },
-
-            function (devices) {
-
-                console.log("SUCCESS");
-
-                console.table(devices);
-
-                document.getElementById("totalDevice").textContent =
-                    devices.length;
-
-                renderVehicleTable(devices);
-
-                resolve(devices);
-
-            },
-
-            function (error) {
-
-                console.error(error);
-
-                reject(error);
-
-            }
-
-        );
-
-    });
-
-}
-
-
-// ===============================================
-// Vehicle Table
+// Render Vehicle Table
 // ===============================================
 
 function renderVehicleTable(devices) {
@@ -126,43 +96,47 @@ function renderVehicleTable(devices) {
     const tbody =
         document.querySelector("#vehicleTable tbody");
 
+    if (!tbody) return;
+
     tbody.innerHTML = "";
+
+    if (!devices || devices.length === 0) {
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="13" style="text-align:center">
+                    No data available
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
 
     devices.forEach((device, index) => {
 
-        tbody.innerHTML += `
+        const row = document.createElement("tr");
 
-        <tr>
+        row.innerHTML = `
 
             <td>${index + 1}</td>
-
-            <td>${device.name}</td>
-
-            <td>${device.serialNumber || "-"}</td>
-
+            <td>${device.name ?? "-"}</td>
+            <td>${device.serialNumber ?? "-"}</td>
             <td>-</td>
-
             <td>-</td>
-
             <td>-</td>
-
             <td>-</td>
-
             <td>-</td>
-
             <td>-</td>
-
             <td>-</td>
-
             <td>-</td>
-
             <td>-</td>
-
             <td>-</td>
-
-        </tr>
 
         `;
+
+        tbody.appendChild(row);
 
     });
 
@@ -170,7 +144,7 @@ function renderVehicleTable(devices) {
 
 
 // ===============================================
-// Export
+// Export CSV
 // ===============================================
 
 function exportCSV() {
