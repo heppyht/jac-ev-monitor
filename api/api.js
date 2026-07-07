@@ -1,30 +1,39 @@
-function getDevices() {
-
-    const api = getApi();
-
-    console.log(api);
-
-}
-
 async function loadDevices() {
 
-    const api = getApi();
+    try {
 
-    api.call(
-        "Get",
-        {
-            typeName: "Device"
-        },
-        function (result) {
+        const api = getApi();
 
-            console.log(result);
+        console.log("API :", api);
 
-        },
-        function (error) {
+        api.call(
+            "Get",
+            {
+                typeName: "Device"
+            },
+            function (devices) {
 
-            console.error(error);
+                console.log("SUCCESS");
+                console.log(devices);
 
-        }
-    );
+                document.getElementById("totalDevices").textContent =
+                    devices.length;
+
+            },
+            function (error) {
+
+                console.error("API ERROR");
+                console.error(error);
+
+            }
+        );
+
+    }
+    catch (err) {
+
+        console.error("LOAD DEVICE ERROR");
+        console.error(err);
+
+    }
 
 }
