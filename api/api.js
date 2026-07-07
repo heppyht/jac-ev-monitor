@@ -1,39 +1,40 @@
+"use strict";
+
 async function loadDevices() {
 
-    try {
+    const api = getApi();
 
-        const api = getApi();
-
-        console.log("API :", api);
+    return new Promise((resolve, reject) => {
 
         api.call(
+
             "Get",
+
             {
                 typeName: "Device"
             },
+
             function (devices) {
 
-                console.log("SUCCESS");
-                console.log(devices);
+                console.log("Device Loaded :", devices.length);
 
-                document.getElementById("totalDevices").textContent =
+                document.getElementById("totalDevice").textContent =
                     devices.length;
 
+                resolve(devices);
+
             },
+
             function (error) {
 
-                console.error("API ERROR");
                 console.error(error);
 
+                reject(error);
+
             }
+
         );
 
-    }
-    catch (err) {
-
-        console.error("LOAD DEVICE ERROR");
-        console.error(err);
-
-    }
+    });
 
 }
