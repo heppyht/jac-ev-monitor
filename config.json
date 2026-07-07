@@ -5,6 +5,7 @@
   "items": [
     {
       "url": "https://heppyht.github.io/jac-ev-monitor/index.html",
+      "path": "EngineMaintenanceLink/",
       "menuName": {
         "en": "JAC EV Monitor",
         "id": "JAC EV Monitor"
