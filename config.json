@@ -2,7 +2,6 @@
   "name": "JAC EV Monitor",
   "supportEmail": "heppy@opexcg.com",
   "version": "1.0.0",
-  "solutionId": "com.heppyht.jac-ev-monitor",
   "items": [
     {
       "url": "https://heppyht.github.io/jac-ev-monitor/index.html",
