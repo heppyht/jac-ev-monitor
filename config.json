@@ -1,16 +1,17 @@
 {
-    "name": "JAC EV Monitor",
-    "supportEmail": "heppy@opexcg.com",
-    "version": "1.0.0",
-    "items": [
-        {
-            "url": "index.html",
-            "path": "jacEvMonitor",
-            "menuName": {
-                "en": "JAC EV Monitor"
-            },
-            "icon": "images/icon.svg"
-        }
-    ],
-    "isSigned": false
+  "name": "JAC EV Monitor",
+  "supportEmail": "heppy@opexcg.com",
+  "version": "1.0.0",
+  "solutionId": "com.heppyht.jac-ev-monitor",
+  "items": [
+    {
+      "url": "https://heppyht.github.io/jac-ev-monitor/index.html",
+      "menuName": {
+        "en": "JAC EV Monitor",
+        "id": "JAC EV Monitor"
+      },
+      "icon": "https://heppyht.github.io/jac-ev-monitor/images/icon.svg"
+    }
+  ],
+  "isSigned": false
 }
