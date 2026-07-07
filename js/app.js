@@ -1,54 +1,55 @@
-// ===========================================
+// ===============================================
 // JAC EV Monitor
 // app.js
-// ===========================================
+// ===============================================
+
+"use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    console.log("JAC EV Monitor Started");
+    console.log("HTML Loaded");
 
-    // Database Name
+    // Database
     document.getElementById("databaseName").textContent = "summobility";
 
-    // Initial Time
     updateTime();
 
-    // Refresh Button
-    document.getElementById("btnRefresh")
+    document
+        .getElementById("btnRefresh")
         .addEventListener("click", loadDashboard);
 
-    // Export Button
-    document.getElementById("btnExport")
+    document
+        .getElementById("btnExport")
         .addEventListener("click", exportCSV);
 
-    // Time Range
-    document.getElementById("timeRange")
+    document
+        .getElementById("timeRange")
         .addEventListener("change", loadDashboard);
 
 });
 
 
-// ===========================================
-// Update Last Refresh Time
-// ===========================================
+// ===============================================
+// Update Time
+// ===============================================
 
 function updateTime() {
 
-    const now = new Date();
-
     document.getElementById("lastUpdate").textContent =
-        now.toLocaleString();
+        new Date().toLocaleString();
 
 }
 
 
-// ===========================================
-// Load Dashboard
-// ===========================================
+// ===============================================
+// Dashboard
+// ===============================================
 
 async function loadDashboard() {
 
-    console.log("Loading Dashboard...");
+    console.log("--------------------------------");
+    console.log("Loading Dashboard");
+    console.log("--------------------------------");
 
     try {
 
@@ -59,8 +60,6 @@ async function loadDashboard() {
     }
     catch (err) {
 
-        console.error("Load Dashboard Error");
-
         console.error(err);
 
     }
@@ -68,47 +67,42 @@ async function loadDashboard() {
 }
 
 
-// ===========================================
-// Load Device
-// ===========================================
+// ===============================================
+// Device
+// ===============================================
 
 async function loadDevices() {
 
     const api = getApi();
 
-    if (!api) {
-
-        console.error("MyGeotab API belum tersedia.");
-
-        return;
-
-    }
-
     return new Promise((resolve, reject) => {
 
         api.call(
+
             "Get",
+
             {
+
                 typeName: "Device"
+
             },
 
             function (devices) {
 
-                console.log("Device List");
+                console.log("SUCCESS");
 
                 console.table(devices);
 
-                // KPI
-                document.getElementById("totalDevices").textContent =
+                document.getElementById("totalDevice").textContent =
                     devices.length;
+
+                renderVehicleTable(devices);
 
                 resolve(devices);
 
             },
 
             function (error) {
-
-                console.error("Get Device Error");
 
                 console.error(error);
 
@@ -123,9 +117,61 @@ async function loadDevices() {
 }
 
 
-// ===========================================
-// Export CSV
-// ===========================================
+// ===============================================
+// Vehicle Table
+// ===============================================
+
+function renderVehicleTable(devices) {
+
+    const tbody =
+        document.querySelector("#vehicleTable tbody");
+
+    tbody.innerHTML = "";
+
+    devices.forEach((device, index) => {
+
+        tbody.innerHTML += `
+
+        <tr>
+
+            <td>${index + 1}</td>
+
+            <td>${device.name}</td>
+
+            <td>${device.serialNumber || "-"}</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+            <td>-</td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+
+// ===============================================
+// Export
+// ===============================================
 
 function exportCSV() {
 
