@@ -6,27 +6,27 @@ geotab.addin.jacEvMonitor = function (api, state) {
 
     return {
 
-        initialize: function () {
+        initialize: async function () {
 
             console.log("Initialize");
 
             geotabApi = api;
+
+            try {
+
+                await loadDashboard();
+
+            } catch (err) {
+
+                console.error(err);
+
+            }
 
         },
 
         focus: function () {
 
             console.log("Focus");
-
-            if (typeof loadDashboard === "function") {
-
-                loadDashboard();
-
-            } else {
-
-                console.error("loadDashboard tidak ditemukan");
-
-            }
 
         },
 
