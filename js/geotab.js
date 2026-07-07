@@ -14,11 +14,19 @@ geotab.addin.jacEvMonitor = function (api, state) {
 
         },
 
-        focus: async function () {
+        focus: function () {
 
             console.log("Focus");
 
-            await loadDashboard();
+            if (typeof loadDashboard === "function") {
+
+                loadDashboard();
+
+            } else {
+
+                console.error("loadDashboard tidak ditemukan");
+
+            }
 
         },
 
