@@ -1,43 +1,40 @@
-// ============================================
-// geotab.js
+// ===============================================
 // JAC EV Monitor
-// ============================================
+// geotab.js
+// ===============================================
 
-// Menyimpan instance API MyGeotab
+"use strict";
+
+// Global API
 let geotabApi = null;
 
 geotab.addin.jacEvMonitor = function (api, state) {
 
-    "use strict";
-
     return {
 
-        // Dipanggil sekali saat Add-In pertama kali dimuat
-        initialize: function () {
+        // Dipanggil sekali saat Add-In pertama kali dibuka
+        initialize: async function () {
+
+            console.log("================================");
+            console.log("JAC EV Monitor");
+            console.log("Initialize");
+            console.log("================================");
 
             geotabApi = api;
 
-            console.log("✅ JAC EV Monitor Initialized");
-
         },
 
-        // Dipanggil setiap Add-In dibuka
+        // Dipanggil setiap menu dibuka
         focus: async function () {
 
-            console.log("📊 Dashboard Active");
+            console.log("Focus");
 
             try {
 
-                if (typeof loadDashboard === "function") {
-
-                    await loadDashboard();
-
-                }
+                await loadDashboard();
 
             }
             catch (err) {
-
-                console.error("Load Dashboard Error");
 
                 console.error(err);
 
@@ -45,10 +42,10 @@ geotab.addin.jacEvMonitor = function (api, state) {
 
         },
 
-        // Dipanggil saat berpindah menu
+        // Dipanggil ketika berpindah menu
         blur: function () {
 
-            console.log("Dashboard Closed");
+            console.log("Blur");
 
         }
 
@@ -56,16 +53,12 @@ geotab.addin.jacEvMonitor = function (api, state) {
 
 };
 
-
-// ============================================
 // Helper
-// ============================================
-
 function getApi() {
 
     if (!geotabApi) {
 
-        throw new Error("MyGeotab API belum diinisialisasi.");
+        throw new Error("MyGeotab API belum tersedia.");
 
     }
 
