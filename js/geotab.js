@@ -2,31 +2,32 @@
 
 let geotabApi = null;
 
-geotab.addin.jacEvMonitor = function (api, state) {
+geotab.addin.jac_ev_monitor = function (api, state) {
 
     return {
 
-        initialize: async function () {
+        initialize: function () {
 
             console.log("Initialize");
 
             geotabApi = api;
 
+        },
+
+        focus: async function () {
+
+            console.log("Focus");
+
             try {
 
                 await loadDashboard();
 
-            } catch (err) {
+            }
+            catch (err) {
 
                 console.error(err);
 
             }
-
-        },
-
-        focus: function () {
-
-            console.log("Focus");
 
         },
 
